@@ -1,13 +1,31 @@
+apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    alm-examples: '[]'
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "core.observatorium.io/v1alpha1",
+          "kind": "Observatorium",
+          "metadata": {
+            "name": "example-observatorium"
+          },
+          "spec": {
+            "size": 3
+          }
+        }
+      ]
     capabilities: Basic Install
   name: observatorium-operator.v0.0.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
-  customresourcedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: Observatorium is the Schema for the observatoria API
+      kind: Observatorium
+      name: observatoria.core.observatorium.io
+      version: v1alpha1
   description: Placeholder description
   displayName: Observatorium Operator
   icon:
@@ -111,6 +129,18 @@ spec:
           - deployments
           verbs:
           - get
+        - apiGroups:
+          - core.observatorium.io
+          resources:
+          - '*'
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
         serviceAccountName: observatorium-operator
     strategy: deployment
   installModes:
