@@ -56,7 +56,6 @@ spec:
               - get
               - patch
               - update
-
       deployments:
       - name: observatorium-operator
         spec:
