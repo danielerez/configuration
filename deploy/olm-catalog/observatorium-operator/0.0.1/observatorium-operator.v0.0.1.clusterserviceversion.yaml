@@ -37,7 +37,7 @@ spec:
         - serviceAccountName: observatorium-operator
           rules:
             - apiGroups:
-              - observatorium.observatorium
+              - core.observatorium.io
               resources:
               - observatoria
               verbs:
@@ -49,7 +49,7 @@ spec:
               - update
               - watch
             - apiGroups:
-              - observatorium.observatorium
+              - core.observatorium.io
               resources:
               - observatoria/status
               verbs:
