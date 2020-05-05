@@ -1,0 +1,5 @@
+channels:
+- currentCSV: obs_sdk-operator.v0.0.1
+  name: 0.0.1
+defaultChannel: 0.0.1
+packageName: obs_sdk-operator
