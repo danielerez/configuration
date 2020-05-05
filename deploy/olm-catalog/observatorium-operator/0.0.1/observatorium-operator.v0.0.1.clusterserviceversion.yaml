@@ -1,148 +1,36 @@
-apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    alm-examples: |-
-      [
-        {
-          "apiVersion": "core.observatorium.io/v1alpha1",
-          "kind": "Observatorium",
-          "metadata": {
-            "name": "example-observatorium"
-          },
-          "spec": {
-            "size": 3
-          }
-        }
-      ]
+    alm-examples: '[]'
     capabilities: Basic Install
-  name: obs_sdk.v0.0.1
+  name: observatorium-operator.v0.0.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
-  customresourcedefinitions:
-    owned:
-    - description: Observatorium is the Schema for the observatoria API
-      kind: Observatorium
-      name: observatoria.core.observatorium.io
-      version: v1alpha1
+  customresourcedefinitions: {}
   description: Placeholder description
-  displayName: Obs Sdk
+  displayName: Observatorium Operator
   icon:
   - base64data: ""
     mediatype: ""
   install:
     spec:
-      clusterPermissions:
-      - rules:
-        - apiGroups:
-          - apiextensions.k8s.io
-          resources:
-          - customresourcedefinitions
-          verbs:
-          - '*'
-        - apiGroups:
-          - core.observatorium.io
-          resources:
-          - observatoria
-          verbs:
-          - create
-          - delete
-          - get
-          - list
-          - patch
-          - update
-          - watch
-        - apiGroups:
-          - core.observatorium.io
-          resources:
-          - observatoria/status
-          verbs:
-          - get
-          - patch
-          - update
-        - apiGroups:
-          - ""
-          resources:
-          - configmaps
-          - secrets
-          - serviceaccounts
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
-        - apiGroups:
-          - rbac.authorization.k8s.io
-          resources:
-          - rolebindings
-          - roles
-          verbs:
-          - create
-          - get
-          - patch
-          - update
-          - list
-          - watch
-          - delete
-        - apiGroups:
-          - apps
-          resources:
-          - statefulsets
-          - deployments
-          verbs:
-          - '*'
-        - apiGroups:
-          - ""
-          resources:
-          - configmaps/status
-          verbs:
-          - get
-          - update
-          - patch
-        - apiGroups:
-          - ""
-          resources:
-          - events
-          verbs:
-          - create
-        - apiGroups:
-          - ""
-          resources:
-          - services
-          - services/finalizers
-          - endpoints
-          verbs:
-          - get
-          - create
-          - update
-          - delete
-        - apiGroups:
-          - monitoring.coreos.com
-          resources:
-          - servicemonitors
-          verbs:
-          - '*'
-        serviceAccountName: observatorium-operator
       deployments:
-      - name: obs_sdk
+      - name: observatorium-operator
         spec:
           replicas: 1
           selector:
             matchLabels:
-              name: obs_sdk
+              name: observatorium-operator
           strategy: {}
           template:
             metadata:
               labels:
-                name: obs_sdk
+                name: observatorium-operator
             spec:
               containers:
               - command:
-                - obs_sdk
+                - observatorium-operator
                 env:
                 - name: WATCH_NAMESPACE
                   valueFrom:
@@ -153,12 +41,12 @@ spec:
                     fieldRef:
                       fieldPath: metadata.name
                 - name: OPERATOR_NAME
-                  value: obs_sdk
+                  value: observatorium-operator
                 image: REPLACE_IMAGE
                 imagePullPolicy: Always
-                name: obs_sdk
+                name: observatorium-operator
                 resources: {}
-              serviceAccountName: obs_sdk
+              serviceAccountName: observatorium-operator
       permissions:
       - rules:
         - apiGroups:
@@ -205,7 +93,7 @@ spec:
         - apiGroups:
           - apps
           resourceNames:
-          - obs_sdk
+          - observatorium-operator
           resources:
           - deployments/finalizers
           verbs:
@@ -223,19 +111,7 @@ spec:
           - deployments
           verbs:
           - get
-        - apiGroups:
-          - core.observatorium.io
-          resources:
-          - '*'
-          verbs:
-          - create
-          - delete
-          - get
-          - list
-          - patch
-          - update
-          - watch
-        serviceAccountName: obs_sdk
+        serviceAccountName: observatorium-operator
     strategy: deployment
   installModes:
   - supported: true
@@ -252,5 +128,5 @@ spec:
   - {}
   maturity: alpha
   provider: {}
-  replaces: obs_sdk.v0.0.0
+  replaces: observatorium-operator.v0.0.0
   version: 0.0.1
