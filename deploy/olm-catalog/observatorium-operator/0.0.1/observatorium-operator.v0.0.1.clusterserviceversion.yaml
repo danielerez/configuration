@@ -33,6 +33,30 @@ spec:
     mediatype: ""
   install:
     spec:
+      clusterPermissions:
+        - serviceAccountName: observatorium-operator
+          rules:
+            - apiGroups:
+              - observatorium.observatorium
+              resources:
+              - observatoria
+              verbs:
+              - create
+              - delete
+              - get
+              - list
+              - patch
+              - update
+              - watch
+            - apiGroups:
+              - observatorium.observatorium
+              resources:
+              - observatoria/status
+              verbs:
+              - get
+              - patch
+              - update
+
       deployments:
       - name: observatorium-operator
         spec:
