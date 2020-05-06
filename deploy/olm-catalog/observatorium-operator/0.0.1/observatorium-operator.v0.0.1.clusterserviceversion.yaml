@@ -6,7 +6,7 @@ metadata:
       [
         {
           "apiVersion": "core.observatorium.io/v1alpha1",
-          "kind": "Observatorium3",
+          "kind": "Observatorium",
           "metadata": {
             "name": "example-observatorium"
           },
@@ -23,7 +23,7 @@ spec:
   customresourcedefinitions:
     owned:
     - description: Observatorium is the Schema for the observatoria API
-      kind: Observatorium2
+      kind: Observatorium
       name: observatoria.core.observatorium.io
       version: v1alpha1
   description: Placeholder description
