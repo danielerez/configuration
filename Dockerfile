@@ -7,6 +7,7 @@ WORKDIR /workspace
 COPY environments/operator/ environments/operator/
 COPY components/ components/
 COPY jsonnetfile.json jsonnetfile.json
+COPY deploy/olm-catalog/observatorium-operator /manifests
 # Build
 RUN GO111MODULE="on" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
 RUN jb install
