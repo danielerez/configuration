@@ -6,7 +6,7 @@ metadata:
       [
         {
           "apiVersion": "core.observatorium.io/v1alpha1",
-          "kind": "Observatorium",
+          "kind": "Observatorium3",
           "metadata": {
             "name": "example-observatorium"
           },
