@@ -34,28 +34,28 @@ spec:
   install:
     spec:
       clusterPermissions:
-        - serviceAccountName: observatorium-operator
-          rules:
-            - apiGroups:
-              - core.observatorium.io
-              resources:
-              - observatoria
-              verbs:
-              - create
-              - delete
-              - get
-              - list
-              - patch
-              - update
-              - watch
-            - apiGroups:
-              - core.observatorium.io
-              resources:
-              - observatoria/status
-              verbs:
-              - get
-              - patch
-              - update
+      - serviceAccountName: observatorium-operator
+        rules:
+        - apiGroups:
+          - core.observatorium.io
+            resources:
+            - observatoria
+            verbs:
+            - create
+            - delete
+            - get
+            - list
+            - patch
+            - update
+            - watch
+        - apiGroups:
+          - core.observatorium.io
+            resources:
+            - observatoria/status
+            verbs:
+            - get
+            - patch
+            - update
       deployments:
       - name: observatorium-operator
         spec:
