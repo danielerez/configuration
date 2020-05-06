@@ -23,7 +23,7 @@ spec:
   customresourcedefinitions:
     owned:
     - description: Observatorium is the Schema for the observatoria API
-      kind: Observatorium
+      kind: Observatorium2
       name: observatoria.core.observatorium.io
       version: v1alpha1
   description: Placeholder description
